@@ -4,7 +4,9 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="./css/styles.css">
-        <script src="./dsjs/main.js"></script>
+        <script src="./js/main.js"></script>
+
+        
     </head>
 
     <body>
@@ -16,11 +18,17 @@
       
         <div class="split left">
             <h2>Upload photo</h2>
-            <center><input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"></center>
+            <center>
+                <input type='file' onchange="readURL(this);" />
+            </center>
+            <center>
+            <img id="image" src="#" alt="your image" />
+            </center>
         </div>
          
         <div class="split right">
-            <h2>Analysis</h2>
+            <h2>Analysis</h2><button id="hi" onclick="clicked()">click</button>
+            <p id="demo">hi</p>
         </div>
         <div class="line"></div>
        
