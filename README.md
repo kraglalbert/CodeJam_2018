@@ -3,3 +3,4 @@
 * Install APIs, learn how to use them
 * Implement web scraper
 * Learn Python!
+* have fun :-)
