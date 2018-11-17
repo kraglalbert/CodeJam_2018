@@ -15,10 +15,6 @@ body{
     padding-left: 3%;
     padding-right: 3%;
 }
-h1{
-    color: black;
-    float: left;
-}
 h2{
     color: rgb(94, 94, 89);
     text-align: center;
@@ -32,9 +28,9 @@ h2{
     font-size: .6em;
     font-stretch: extra-expanded;
     font-weight: bold;
-    color:rgba(92, 132, 241, 0.87);
+    color:rgb(94, 94, 89);
     display: inline;
-    border-left: 10px solid #fff;
+    border-left: 15px solid #fff;
  }
 
 .top{
@@ -45,7 +41,6 @@ h2{
     position: fixed;
 }
 .line{
-  
     top:15%;
     right: 5%;
     width: 90%;
@@ -61,15 +56,45 @@ h2{
     align-content: center;
     left: 0;
     bottom: 0;
-    /* background-color: rgb(177, 203, 211); */
     background-color: white;
 
 }
 .right{
     right: 0;
     bottom: 0;
-    /*background-color: rgb(195, 233, 183); */
     background-color: white;
-    
-
+}
+.upload-wrapper{
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+.upload{
+    text-align: center;
+    border: 1px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 8px;
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: .6em;
+    font-weight: bold;
+}
+.upload-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+.analyze{
+    text-align: center;
+    border: 0px solid gray;
+    background-color: rgba(92, 132, 241, 0.87);
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: .8em;
+    font-weight: bold;
 }
