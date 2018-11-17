@@ -1,10 +1,13 @@
 import requests
 import webbrowser
+import re
 
 from bs4 import BeautifulSoup
 from time import sleep
 
-# takes in a path to an image and returns google search results for that image
+retailers = {"amazon.com","ikea.com","apple.com","walmart.com","target.com"}
+
+# takes in a path to an image and returns the first product result from that image
 def reverse_image_search( image_path ):
     # add header
     headers = {
@@ -17,24 +20,33 @@ def reverse_image_search( image_path ):
     response = requests.post(searchUrl, files=multipart, allow_redirects=False)
     url = response.headers['Location']
 
-    # parse the html using beautiful soup and store in variable `html`
-    # html = BeautifulSoup(url, 'html.parser')
-
     page = requests.get(url, headers=headers)
-    soup = BeautifulSoup(page.content)
-    links = soup.findAll("a")   
-    for link in links:
-        print(link.get('href'))
+    soup = BeautifulSoup(page.content, "lxml")
+    links = soup.findAll("a")
 
-    #print(links)
-    #webbrowser.open(url)
+    first_product_link = ""
+    link_found = False
+
+    for link in links:
+        if link_found == True:
+            break
+        # check that link is not null
+        if (link.get('href') is not None):
+            # check if the link is a valid retailer link
+            for website in retailers:
+                if (website in link.get('href') and link.get('href').startswith("http")):
+                    first_product_link = link.get('href')
+                    link_found = True
+                    break
+
+    print(first_product_link)
+
+    webbrowser.open(first_product_link)
 
 # main method
 def main():
-    filePath = './images/couch.jpg'
-    amazon_url = 'http://www.amazon.com/dp/B00VUTAFR8'
+    filePath = './images/macbook.jpeg'
     reverse_image_search(filePath)
-    #get_product_price()
 
 if __name__ == '__main__':
     main()
