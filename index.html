@@ -19,15 +19,20 @@
         <div class="split left">
             <h2>Upload photo</h2>
             <center>
-                <input type='file' onchange="readURL(this);" />
+                <div class="upload-wrapper">
+                    <button class="upload" >Upload File</button>
+                    <input type='file' onchange="readURL(this);" />
+                </div>
             </center>
             <center>
             <img id="image" src="#" alt="your image" />
-            </center>
+            
+            <button class="analyze" id="analyze" onclick="clicked()">Analyze</button>
+        </center>
         </div>
          
         <div class="split right">
-            <h2>Analysis</h2><button id="hi" onclick="clicked()">click</button>
+            <h2>Analysis</h2>
             <p id="demo">hi</p>
         </div>
         <div class="line"></div>

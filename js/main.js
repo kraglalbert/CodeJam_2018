@@ -1,10 +1,13 @@
 $(document).ready(function(){
     $("#image").css("display","none");
+    $("#analyze").css("display","none");
 })
 
 function readURL(input) {
     if (input.files && input.files[0]) {
         $("#image").css("display","block");
+        $("#analyze").css("display","block");
+        
         var reader = new FileReader();
 
         reader.onload = function (e) {
