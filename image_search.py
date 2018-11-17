@@ -1,11 +1,14 @@
 import requests
 import webbrowser
 import re
+import botocore
+import boto3
 
 from bs4 import BeautifulSoup
 from time import sleep
 
 retailers = {"amazon.com","ikea.com","apple.com","walmart.com","target.com"}
+cred_file = "./AWS_Cred.txt"
 
 # takes in a path to an image and returns the first product result from that image
 def reverse_image_search( image_path ):
@@ -43,10 +46,29 @@ def reverse_image_search( image_path ):
 
     webbrowser.open(first_product_link)
 
+def get_image(bucket, key):
+    output_name = "download.jpg"
+
+    # this reads from the credential file which must be placed somewhere locally
+    file = open(cred_file, 'r') 
+    lines = file.readlines()
+
+    s3 = boto3.resource('s3',aws_access_key_id=lines[0].rstrip(),aws_secret_access_key=lines[1].rstrip())
+
+    try:
+        s3.Bucket(bucket).download_file(key, output_name)
+    except botocore.exceptions.ClientError as e:
+        if e.response['Error']['Code'] == "404":
+            print("The object does not exist.")
+        else:
+            raise
+
 # main method
 def main():
-    filePath = './images/macbook.jpeg'
-    reverse_image_search(filePath)
+    # filePath = './images/macbook.jpeg'
+    # reverse_image_search(filePath)
+
+    get_image("codejam2018", "couch.jpg")
 
 if __name__ == '__main__':
     main()
